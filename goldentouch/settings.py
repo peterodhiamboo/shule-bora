@@ -28,6 +28,10 @@ INSTALLED_APPS = [
 
     # my apps
     'my_class',
+    'my_staff',
+
+    #Third-Party
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
@@ -115,3 +119,6 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

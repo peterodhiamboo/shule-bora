@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/table.css' %}">
+{% endblock style %}
+
+{% block content %}
+
+<div class="row m-b-lg">
+    <div class="col-sm-6" style="margin-left: -40px;">
+        <span class="font-thin">
+            <i class="fas fa-address-card fa-2x"></i>
+            Staff
+        </span>
+    </div>
+</div>
+
+<div class="row" style="margin-left: -40px;">
+    <div class="col-sm-6">
+        <label>
+            Staff
+            <select class="form-control input-sm">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+            entries]
+        </label>
+    </div>
+</div>
+
+<section class="my_table">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col" style="float: left">Name</th>
+                <th scope="col">Gender</th>
+                <th scope="col">Type</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Email Address</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+            {% for staff in my_staff %}
+            <tr>
+                <td><img src="{{ staff.staff_image.url }}" alt="" class="thumbnail" border=3 height=30 width=30>
+                    {{ staff.sur_name }} {{ staff.first_name }} {{ staff.last_name }}</td>
+                <td>{{ staff.gender }}</td>
+                <td>{{ staff.staff_designation }}</td>
+                <td>{{ staff.phone_number }}</td>
+                <td>{{ staff.email_address }}</td>
+                <td><a href="#" class="btn btn-sm btn-outline-secondary">
+                        <i class="fas fa-file-alt"></i> View</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock content %}

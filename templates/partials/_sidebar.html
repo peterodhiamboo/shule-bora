@@ -58,36 +58,11 @@
                                     <span class="badge badge-pill badge-success">Pro</span>
                                 </a>
                             </li>
+                            {% for class in classes %}
                             <li>
-                                <a href="#">PP1 </a>
+                                <a href="#">{{ class.class_name }} </a>
                             </li>
-                            <li>
-                                <a href="#">PP2</a>
-                            </li>
-                            <li>
-                                <a href="#">GRADE 1</a>
-                            </li>
-                            <li>
-                                <a href="#">GRADE 2</a>
-                            </li>
-                            <li>
-                                <a href="#">GRADE 3</a>
-                            </li>
-                            <li>
-                                <a href="#">CLASS 4</a>
-                            </li>
-                            <li>
-                                <a href="#">CLASS 5</a>
-                            </li>
-                            <li>
-                                <a href="#">CLASS 6</a>
-                            </li>
-                            <li>
-                                <a href="#">CLASS 7</a>
-                            </li>
-                            <li>
-                                <a href="#">CLASS 8</a>
-                            </li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </li>
@@ -121,7 +96,7 @@
                     <div class="sidebar-submenu">
                         <ul>
                             <li>
-                                <a href="#">NON TEACHING</a>
+                                <a href="{% url 'my_staff' %}">NON TEACHING</a>
                             </li>
                             <li>
                                 <a href="#">TEACHING</a>

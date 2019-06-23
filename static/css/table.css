@@ -1,0 +1,25 @@
+body { 
+  background-color: #DCDCDC
+}
+
+
+img.thumbnail {
+  border-radius: 50%;
+}
+
+.my_table{
+  padding: 0px 20px 0px 0px;
+}
+
+tbody.tbody{
+  background-color: white;
+}
+
+.font-thin {
+  font-weight: 300;
+  font-size: 20px;
+}
+
+div{
+  display: block;
+}
