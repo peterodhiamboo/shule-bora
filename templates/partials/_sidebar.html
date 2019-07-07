@@ -12,12 +12,12 @@
         <div class="sidebar-header">
             <div class="user-pic">
                 <img class="img-responsive img-rounded"
-                    src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+                    src="https://i.imgur.com/MyGHXta.jpg?1"
                     alt="User picture">
             </div>
             <div class="user-info">
-                <span class="user-name">John
-                    <strong>Doe</strong>
+                <span class="user-name">{{ user.first_name }}
+                    <strong>{{ user.last_name }}</strong>
                 </span>
                 <span class="user-role">Administrator</span>
                 <span class="user-status">
@@ -55,14 +55,14 @@
                         <ul>
                             {% for class in classes %}
                             <li>
-                                <a href="#">{{ class.class_name }} </a>
+                                <a href="{% url 'students' %}">{{ class.class_name }} </a>
                             </li>
                             {% endfor %}
                         </ul>
                     </div>
                 </li>
                 <li class="sidebar-dropdown">
-                    <a href="#">
+                    <a href="{% url 'parents' %}">
                         <i class="fas fa-users"></i>
                         <span>Parents</span>
                         <span class="badge badge-pill badge-danger">3</span>
@@ -108,15 +108,12 @@
                     <div class="sidebar-submenu">
                         <ul>
                             <li>
-                                <a href="#">Google maps</a>
-                            </li>
-                            <li>
-                                <a href="#">Open street map</a>
+                                <a href="{% url 'maps' %}">Google maps</a>
                             </li>
                         </ul>
                     </div>
                 </li>
-                <li class="sidebar-dropdown">
+                <li class="sidebar">
                     <a href="{% url 'profile' %}">
                         <i class="far fa-user"></i>
                         <span>Profile</span>

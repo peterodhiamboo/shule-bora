@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h3>This is the student area </h3>
+
+{% for stude in student %}
+    <p>{{ stude.first_name }}</p>
+{% endfor %}
+{% endblock %}

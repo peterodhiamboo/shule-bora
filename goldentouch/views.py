@@ -12,3 +12,6 @@ def homepage(request):
 
 def accounts(request):
     return render(request, 'goldentouch/accounts.html', context )
+
+def mappings(request):
+    return render(request, 'maps.html', context )

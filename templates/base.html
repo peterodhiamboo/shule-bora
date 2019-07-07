@@ -26,6 +26,7 @@
     <!------ Include the above in your HEAD tag ---------->
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/lightbox.css' %}">
     {% block style %}
     {% endblock style %}
 
@@ -40,6 +41,8 @@
         </main>
     </div>
 
+    {% block script %}
+    {% endblock script %}
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
@@ -50,4 +53,5 @@
         crossorigin="anonymous"></script>
 
     <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/lightbox.js' %}"></script>
 </body>

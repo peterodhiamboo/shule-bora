@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     # my apps
     'my_class',
     'my_staff',
+    'students',
 
     #Third-Party
     'phonenumber_field',
