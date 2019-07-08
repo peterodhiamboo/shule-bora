@@ -17,8 +17,8 @@
 
 .btn-primary{
     color: #fff!important;
-    background-color: #177bbb;
-    border-color: #177bbb;
+    background-color: #525965;
+    border-color: #525965;
     padding: 5px 10px;
     font-size: 12px;
     line-height: 1.5;
@@ -238,4 +238,10 @@
   margin-bottom: 5px;
   font-weight: 500;
   color: #999999;
+}
+
+.btn-info {
+  color: #fff;
+  background-color: #525965;
+  border-color: #525965;
 }

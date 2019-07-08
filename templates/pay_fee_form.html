@@ -1,0 +1,38 @@
+<!-- Default form contact -->
+<form class="text-center border-light p-5">
+    <input type="text" id="id_upi" name="id_uname" class="form-control mb-3" placeholder="Student UPI">
+    <input type="number" class="form-control mb-3" placeholder="Amount in KSH">
+
+    <div class="form-group">
+        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"
+            placeholder="Remarks"></textarea>
+    </div>
+
+    <div class="custom-control custom-checkbox mb-4">
+        <input type="checkbox" class="custom-control-input" id="defaultContactFormCopy">
+        <label class="custom-control-label" for="defaultContactFormCopy">Email me a receipt</label>
+    </div>
+    <button class="btn btn-info btn-block" type="submit">Send</button>
+
+</form>
+<script>
+    $("#id_upi").change(function () {
+
+        var upi = $(this).val();
+
+        $.ajax({
+            url: '/ajax/validate_upi/',
+            data: {
+                'upi': upi
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (data.is_taken) {
+                    alert("A user with this username already exists.");
+                }
+            }
+        });
+
+        console.log($(this).val());
+    });
+</script>
