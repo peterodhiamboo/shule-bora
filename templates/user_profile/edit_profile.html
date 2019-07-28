@@ -1,0 +1,66 @@
+<div class="modal fade" data-backdrop="static" id="pop-profile-edit" role="dialog" aria-labelledby="header-label"
+        aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header bg-default">
+                    <h4 class="modal-title">
+                        <i class="glyphicon glyphicon-pencil"></i> Staff Details
+                    </h4>
+                </div>
+                <div class="modal-body ">
+                    <div class="err-profile-edit"></div>
+                    <form method="POST" action="" accept-charset="UTF-8" id="profile-edit"
+                        onsubmit="if (!window.__cfRLUnblockHandlers) return false; return false;"
+                        data-cf-modified-f3ec3b869b235a50d4837421-=""><input name="_method" type="hidden"
+                            value="PATCH"><input name="_token" type="hidden"
+                            value="iD9YialxO2GTnzv5ttLcltAVvRr0jCdiSUpSNTRF">
+                        <div class="form-group">
+                            <input id="name" class="form-control" placeholder="First Middle Last Name" name="name"
+                                type="text" value="Super Admin">
+                        </div>
+                        <div class="form-group">
+                            <input id="type" class="form-control" placeholder="Type" name="type" type="hidden"
+                                value="Owner">
+                        </div>
+                        <div class="form-group input-group">
+                            <label for="country" class="input-group-addon">Nationality</label>
+                            <input id="country" class="form-control" placeholder="Nationality" name="country"
+                                type="hidden" value="KE">
+                        </div>
+                        <div class="form-group">
+                            <input id="gender" class="form-control" placeholder="Gender" name="gender" type="hidden"
+                                value="Female">
+                        </div>
+                        <div class="form-group">
+                            <input id="phone" class="form-control" placeholder="Phone" name="phone" type="text"
+                                value="+25490440XXXX">
+                        </div>
+                        <div class="form-group">
+                            <input id="email" class="form-control" placeholder="Email" name="email" type="text"
+                                value="protected@email.com">
+                        </div>
+                        <div class="form-group">
+                            <input id="status" class="form-control" placeholder="Status" name="status" type="hidden"
+                                value="Active">
+                        </div>
+                        <div class="form-group input-group">
+                            <label for="serial_number" class="input-group-addon">Serial #</label>
+                            <input id="serial_number" class="form-control" placeholder="Serial Number"
+                                name="serial_number" type="text" value="0303">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-6"><button type="submit"
+                                class="btn btn-primary btn-block form-control profile-edit"
+                                onclick="if (!window.__cfRLUnblockHandlers) return false; poster('profile-edit','',$(this))"
+                                data-cf-modified-f3ec3b869b235a50d4837421-=""><i class="fa fa-check"></i> Save</button>
+                        </div>
+                        <div class="col-md-6"><button type="button" class="btn btn-default btn-block form-control"
+                                data-dismiss="modal"><i class="fa fa-ban"></i> Cancel</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

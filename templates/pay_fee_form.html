@@ -1,38 +1,166 @@
-<!-- Default form contact -->
-<form class="text-center border-light p-5">
-    <input type="text" id="id_upi" name="id_uname" class="form-control mb-3" placeholder="Student UPI">
-    <input type="number" class="form-control mb-3" placeholder="Amount in KSH">
+{% load static %}
 
-    <div class="form-group">
-        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3"
-            placeholder="Remarks"></textarea>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title h4 mb-4" id="exampleModalLongTitle">Fee Payment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Default form contact -->
+                <form class="text-center border-light p-5" method="POST" id="myForm">
+                    {% csrf_token %}
+                    <!--DISPLAY ALERT MESSAGES IF THE UPI IS INVALID-->
+                    <div class="messages">
+                    </div>
+
+                    <input type="text" id="id_upi" name="id_upi" class="form-control mb-3 required"
+                        placeholder="Student UPI">
+                    <input type="hidden" id="custId" name="custId" value="">
+                    <input type="number" id="id_amount" name="id_amount" class="form-control mb-3 required"
+                        placeholder="Amount in KSH">
+
+                    <div class="form-group">
+                        <textarea class="form-control rounded-0 required" id="id_remarks" name="id_remarks" rows="3"
+                            placeholder="Remarks"></textarea>
+                    </div>
+
+                    <div class="custom-control custom-checkbox mb-4">
+                        <input type="checkbox" class="custom-control-input" id="defaultContactFormCopy">
+                        <label class="custom-control-label" for="defaultContactFormCopy">Email me a receipt</label>
+                    </div>
+                    <button class="btn btn-info btn-block toggle-disabled" id="sub" disabled type="submit">
+                        Make Payment
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
+</div>
 
-    <div class="custom-control custom-checkbox mb-4">
-        <input type="checkbox" class="custom-control-input" id="defaultContactFormCopy">
-        <label class="custom-control-label" for="defaultContactFormCopy">Email me a receipt</label>
-    </div>
-    <button class="btn btn-info btn-block" type="submit">Send</button>
-
-</form>
 <script>
+    $(document).on('change keyup', '.required', function (e) {
+        let Disabled = true;
+        $(".required").each(function () {
+            let value = this.value
+            if ((value) && (value.trim() != '')) {
+                Disabled = false
+            } else {
+                Disabled = true
+                return false
+            }
+        });
+
+        if (Disabled) {
+            $('.toggle-disabled').prop("disabled", true);
+        } else {
+            $('.toggle-disabled').prop("disabled", false);
+        }
+    })
+
+    function close_alerts() {
+        window.setTimeout(function () {
+            $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                $(this).remove();
+            });
+        }, 4000);
+    }
+
     $("#id_upi").change(function () {
-
         var upi = $(this).val();
-
         $.ajax({
-            url: '/ajax/validate_upi/',
+            url: "{% url 'validate_upi' %}",
             data: {
                 'upi': upi
             },
             dataType: 'json',
             success: function (data) {
-                if (data.is_taken) {
-                    alert("A user with this username already exists.");
+                if (data.is_taken == false) {
+                    $(".messages").append(
+                        '<div class="alert alert-danger" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + data.msg + '</div>'
+                    );
+                    close_alerts()
+                    console.log(data.msg)
+                } else {
+                    $("#custId").val(upi)
+                    console.log('input field is:' + $("#custId").val());
                 }
             }
         });
 
         console.log($(this).val());
     });
+
+    $("#id_amount").change(function () {
+        var amount = $(this).val();
+        my_upi = document.getElementById('custId').value
+        $.ajax({
+            url: "{% url 'validate_amount' %}",
+            data: {
+                'amount': amount,
+                'my_upi': my_upi,
+            },
+            dataType: 'json',
+            success: function (data) {
+                if (data.taken) {
+                    $(".messages").append(
+                        data.balance_msg
+                    ); $(".alert").click(function (event) {
+
+                    });
+                    console.log(data.balance_msg)
+                } else {
+                    $(".messages").append(
+                        data.balance_msg
+                    );
+                }
+                close_alerts()
+            }
+        });
+        console.log($(this).val());
+        console.log(my_upi);
+    });
+
+    $("#myForm").on('submit', function (event) {
+        event.preventDefault();
+        $("#sub").click(function (event) {
+            $.confirm({
+                content: function () {
+                    var self = this;
+                    return $.ajax({
+                        url: "{% url 'validate_amount' %}",
+                        dataType: 'json',
+                        method: 'post',
+                        data: {
+                            'upi': $('#id_upi').val(),
+                            'amount': $('#id_amount').val(),
+                            'remarks': $('#id_remarks').val(),
+                            'csrfmiddlewaretoken': $("input[name='csrfmiddlewaretoken']").val(),
+                        }
+                    }).done(function (response) {
+                        self.setTitle(response.name);
+                        self.setContent('Description: ' + response.description);
+                        refreshToggleForm();
+                    }).fail(function () {
+                        self.setContent('Something went wrong.');
+                        refreshToggleForm();
+                    });
+                }
+            });
+        });
+    });
+
+    function isEmpty(str) {
+        return (!str || 0 === str.length);
+    }
+
+    function refreshToggleForm() {
+        $("#myForm")[0].reset()
+        $("#exampleModal").modal('toggle');
+    }
+    
 </script>

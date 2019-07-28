@@ -1,19 +1,17 @@
 from django.shortcuts import render
 from . models import My_Students
-from my_class.models import Class_Layout
 
 # Create your views here.
 
-def students(request):
-    my_class = Class_Layout.objects.filter(class_name=my_class_name)
-    # students = My_Students.objects.get(student_class=my_class)
-
-    if students:                                                                                                    
+def students(request, c_name):
+    my_class = My_Students.objects.filter(student_class__pk=c_name)
+    if my_class:
         context = {
-            'student': students,
+            'students':my_class
         }
     else:
         context = {
-            'student': 'No Student Here',
+            'student':'No Student in this class'
         }
     return render(request, 'students/index.html', context)
+

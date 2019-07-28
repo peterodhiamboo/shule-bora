@@ -2,5 +2,5 @@ from django.urls import path, include
 from . views import students
 
 urlpatterns = [
-    path('', students, name="students"),
+    path('<int:c_name>/', students, name="students"),
 ]

@@ -49,13 +49,13 @@
                     <a href="#">
                         <i class="fas fa-graduation-cap"></i>
                         <span>Students</span>
-                        <span class="badge badge-pill badge-warning">New</span>
+                        <span class="badge badge-pill badge-warning">{{ student_count | length }}</span>
                     </a>
                     <div class="sidebar-submenu">
                         <ul>
                             {% for class in classes %}
                             <li>
-                                <a href="{% url 'students' %}">{{ class.class_name }} </a>
+                                <a href="{% url 'students' class.pk %}">{{ class.class_name }} </a>
                             </li>
                             {% endfor %}
                         </ul>
@@ -76,10 +76,10 @@
                     <div class="sidebar-submenu">
                         <ul>
                             <li>
-                                <a href="{% url 'non-teachers' %}">NON TEACHING</a>
+                                <a href="{% url 'teachers' %}">Teachers</a>
                             </li>
                             <li>
-                                <a href="{% url 'teachers' %}">TEACHING</a>
+                                <a href="{% url 'non-teachers' %}">Support Staff</a>
                             </li>
                         </ul>
                     </div>

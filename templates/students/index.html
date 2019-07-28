@@ -1,9 +1,70 @@
 {% extends 'base.html' %}
+{% load humanize %}
+
+{% block style %}
+<style>
+    img {
+        height: 40px;
+        width: 40px;
+    }
+
+    td{
+        padding-top: 0px;
+    }
+</style>
+{% endblock style %}
 
 {% block content %}
-<h3>This is the student area </h3>
+<table id="dtMaterialDesignExample" class="table table-striped dataTables" width="100%">
+    <thead>
+        <tr>
+            <th class="th-sm">
+            </th>
+            <th class="th-sm">Name
+            </th>
+            <th class="th-sm">UPI Number
+            </th>
+            <th class="th-sm">Gender
+            </th>
+            <th class="th-sm">Date Joined
+            </th>
+            <th class="th-sm">Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>
+                <img src="{{ student.student_image.url }}" class="rounded-circle avatar">
+            </td>
+            <td>{{ student.first_name | title }} {{ student.last_name | title }} {{ student.sur_name | title}}</td>
+            <td>{{ student.ups_number }}</td>
+            <td>{{ student.gender | title }}</td>
+            <td>{{ student.added_at | naturaltime }}</td>
+            <td><a class="btn btn-sm btn-outline-secondary"
+                    href="https://smartschool.co.ke/home/schools/2844/staff/2857?dashboard"><i
+                        class="fas fa-file-alt"></i>&nbsp;View</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <th class="th-sm">Name
+            </th>
+            <th class="th-sm">UPI Number
+            </th>
+            <th class="th-sm">Gender
+            </th>
+            <th class="th-sm">Date Joined
+            </th>
+            <th class="th-sm">Action
+            </th>
+        </tr>
+    </tfoot>
+</table>
 
 {% for stude in student %}
-    <p>{{ stude.first_name }}</p>
+<p>{{ stude.first_name }}</p>
 {% endfor %}
 {% endblock %}

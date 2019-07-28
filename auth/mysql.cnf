@@ -1,0 +1,5 @@
+[client]
+database = 'goldentouch'
+user = 'wildcard'
+password = 'pomex44'
+default-character-set='utf8'

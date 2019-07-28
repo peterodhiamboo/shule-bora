@@ -12,5 +12,6 @@ class Class_Layout(models.Model):
     def __str__(self):
         return self.class_name
 
+
     class Meta:
         ordering = ('class_name', 'class_teacher',)
